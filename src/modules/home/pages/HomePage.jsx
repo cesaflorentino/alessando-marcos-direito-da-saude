@@ -1,5 +1,6 @@
+import { LeadForm } from "../form/LeadForm";
 import { ArrowRight, Building2, Check, Clock3, FileCheck2, Globe2, GraduationCap, MapPin, MessageCircle, Scale, ShieldCheck } from "lucide-react";
-import { templateConfig as site, whatsappUrl } from "../../../config/template.config";
+import { templateConfig as site } from "../../../config/template.config";
 import lawyerPhoto from "../../../assets/Images/Sobre.png";
 import heroImage from "../../../assets/hero.jpg";
 import teamAlessandro from "../../../assets/equipe/Alessandro-PARALEGAL-2.png";
@@ -35,7 +36,7 @@ const faqs = [
   ["Quais documentos são importantes?", "Normalmente são analisados documentos pessoais, prescrição médica, laudos, exames, relatório do médico assistente e a negativa do plano de saúde ou do SUS, quando existente."],
 ];
 
-function CTA({ children = "Quero analisar meu caso" }) { return <a className="primary-button" href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle />{children}<ArrowRight /></a>; }
+function CTA({ children = "Quero analisar meu caso" }) { return <a className="primary-button" href="#contato"><MessageCircle />{children}<ArrowRight /></a>; }
 
 export function HomePage() {
   const query = encodeURIComponent(site.office.mapsQuery);
@@ -48,7 +49,7 @@ export function HomePage() {
 
     <section className="urgency-section"><div className="container urgency-card"><div className="urgency-icon"><Clock3 /></div><div><span className="eyebrow">Atenção ao tempo</span><h2>Em muitos casos, o tempo faz diferença.</h2><p>Quando um medicamento, cirurgia ou tratamento é negado, o atraso pode comprometer a continuidade do atendimento indicado pelo médico.</p><p>Buscar orientação jurídica o quanto antes permite avaliar a documentação e entender quais caminhos podem ser adotados conforme a sua situação.</p><CTA /></div></div></section>
 
-    <section className="light-section process-section" id="processo"><div className="container"><header className="section-heading"><span className="eyebrow">Etapas do atendimento</span><h2>Como funciona?</h2><p>Um processo simples, transparente e direcionado às particularidades do seu caso.</p></header><div className="steps"><article><span>01</span><MessageCircle /><h3>Entre em contato</h3><p>Fale com nossa equipe pelo WhatsApp.</p></article><article><span>02</span><FileCheck2 /><h3>Envie sua documentação</h3><p>Analisaremos prescrição, laudos, exames e a negativa, quando houver.</p></article><article><span>03</span><ShieldCheck /><h3>Receba uma análise jurídica</h3><p>Avaliamos o caso e orientamos sobre as possibilidades previstas na legislação.</p></article></div></div></section>
+    <section className="light-section process-section" id="processo"><div className="container"><header className="section-heading"><span className="eyebrow">Etapas do atendimento</span><h2>Como funciona?</h2><p>Um processo simples, transparente e direcionado às particularidades do seu caso.</p></header><div className="steps"><article><span>01</span><MessageCircle /><h3>Entre em contato</h3><p>Preencha o formulário e continue o atendimento pelo WhatsApp.</p></article><article><span>02</span><FileCheck2 /><h3>Envie sua documentação</h3><p>Analisaremos prescrição, laudos, exames e a negativa, quando houver.</p></article><article><span>03</span><ShieldCheck /><h3>Receba uma análise jurídica</h3><p>Avaliamos o caso e orientamos sobre as possibilidades previstas na legislação.</p></article></div></div></section>
 
     <section className="dark-section why-section"><div className="container why-layout"><header className="section-heading"><span className="eyebrow">Atuação responsável</span><h2>Por que escolher nosso escritório?</h2><p>Orientação próxima, linguagem acessível e atenção à realidade de cada cliente.</p></header><div className="why-grid">{benefits.map((item, index) => <div key={item}><span>0{index + 1}</span><Check /><p>{item}</p></div>)}</div></div></section>
 
@@ -60,10 +61,11 @@ export function HomePage() {
 
     <section className="faq-section" id="faq"><div className="container faq-layout"><header className="section-heading"><span className="eyebrow">Dúvidas frequentes</span><h2>Informação para o seu próximo passo.</h2><p>Respostas objetivas para dúvidas comuns sobre negativas de tratamento.</p></header><div className="faq-list">{faqs.map(([question, answer], index) => <details key={question}><summary><span>0{index + 1}</span>{question}<i>+</i></summary><p>{answer}</p></details>)}</div></div></section>
 
-    <section className="final-cta" id="contato"><div className="container"><span className="eyebrow">Converse com nossa equipe</span><h2>Não adie a análise do seu caso.</h2><p>Se você recebeu uma negativa de medicamento, cirurgia, exame ou tratamento, entenda quais são as possibilidades jurídicas para a sua situação.</p><div className="contact-buttons"><CTA>WhatsApp (21) 97150-3548</CTA></div></div></section>
+    <LeadForm />
 
     <section className="location-section" id="localizacao"><div className="container location-grid"><div><span className="eyebrow">Localização</span><h2>Atendimento presencial e on-line.</h2><p>Entre em contato para receber orientações sobre o atendimento e agendar um horário.</p><div className="location-details"><span><MapPin /><span><small>ENDEREÇO</small>{site.office.address}<br />{site.office.district}</span></span><span><Clock3 /><span><small>ATENDIMENTO</small>{site.office.hours}</span></span></div><a className="outline-button" href={`https://www.google.com/maps/search/?api=1&query=${query}`} target="_blank" rel="noreferrer">Abrir no Google Maps <ArrowRight /></a></div><div className="map-frame"><iframe title={`Localização de ${site.brand.name}`} src={`https://www.google.com/maps?q=${query}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div></section>
 
-    <div className="floating-group"><a className="floating-whatsapp" href={whatsappUrl()} target="_blank" rel="noreferrer" aria-label={`WhatsApp ${site.contact.phoneLabel}`}><MessageCircle /><span>{site.contact.phoneLabel}</span></a></div>
+    <div className="floating-group"><a className="floating-whatsapp" href="#contato" aria-label="Preencher formulário para continuar no WhatsApp"><MessageCircle /><span>{site.contact.phoneLabel}</span></a></div>
   </>;
 }
+
