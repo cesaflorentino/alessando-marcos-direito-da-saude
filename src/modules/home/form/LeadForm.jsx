@@ -41,13 +41,13 @@ export function LeadForm({ questions = leadFormQuestions }) {
       <form className="qualification-form" onSubmit={submit}>
         {!configured && <p className="form-configuration-notice" role="status">Prévia em preparação: as alternativas do formulário da Meta ainda precisam ser confirmadas. O envio está indisponível.</p>}
         <p className="form-progress" aria-live="polite">{answered} de {questions.length} perguntas respondidas · Todas são obrigatórias</p>
-        {questions.map((question, index) => <fieldset key={question.id} className="qualification-question">
-          <legend><span>{String(index + 1).padStart(2, "0")}</span>{question.label}</legend>
-          <div className="qualification-options">{question.options.map((option, optionIndex) => <label key={option} className={answers[question.id] === option ? "qualification-option selected" : "qualification-option"} htmlFor={`${question.id}-${optionIndex}`}>
-            <input id={`${question.id}-${optionIndex}`} type="radio" name={question.id} value={option} required checked={answers[question.id] === option} onChange={() => { setAnswers(previous => ({ ...previous, [question.id]: option })); setError(""); }} />
-            <span>{option}</span>
-          </label>)}</div>
-        </fieldset>)}
+        {questions.map((question, index) => <div key={question.id} className="qualification-question">
+          <label className="qualification-label" htmlFor={question.id}><span>{String(index + 1).padStart(2, "0")}</span>{question.label}</label>
+          <select className="qualification-select" id={question.id} name={question.id} required value={answers[question.id] || ""} onChange={event => { setAnswers(previous => ({ ...previous, [question.id]: event.target.value })); setError(""); }}>
+            <option value="" disabled>Selecione uma resposta</option>
+            {question.options.map(option => <option key={option} value={option}>{option}</option>)}
+          </select>
+        </div>)}
         <label className="form-acknowledgement"><input type="checkbox" required checked={acknowledged} onChange={event => { setAcknowledged(event.target.checked); setError(""); }} /><span>Concordo em compartilhar estas respostas com o escritório pelo WhatsApp para o atendimento solicitado.</span></label>
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="primary-button form-submit" type="submit" disabled={!complete || !acknowledged}><MessageCircle /> Continuar no WhatsApp <ArrowRight /></button>
