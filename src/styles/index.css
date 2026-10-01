@@ -45,3 +45,6 @@ body{background:#fff;color:#3f4548}.site-header{background:#055f7df2;border-bott
 /* Respostas recolhidas em campos de seleção */
 .qualification-label{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.96rem;font-weight:700;line-height:1.5;color:#3f4548}.qualification-label>span{flex:0 0 auto;padding-top:3px;color:#218ba9;font-size:.7rem}.qualification-select{display:block;width:100%;min-width:0;min-height:52px;padding:12px 32px 12px 14px;border:1px solid #d6e8ed;border-radius:11px;background:#fff;color:#3f4548;font:inherit;font-size:.88rem;cursor:pointer}.qualification-select:focus-visible{outline:2px solid #218ba9;outline-offset:3px}.qualification-select:valid{border-color:#218ba9;background:#edf8fb}@media(max-width:680px){.qualification-label{font-size:.9rem}.qualification-select{font-size:16px}}
 
+
+.qualification-fields{min-width:0;margin:0;padding:0;border:0}.qualification-fields:disabled{opacity:.7}.qualification-select[type]{cursor:text}
+

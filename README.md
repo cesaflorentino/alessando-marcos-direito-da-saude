@@ -40,12 +40,16 @@ Todos os CTAs de contato levam a `#contato`. O botão final é liberado somente 
 
 O evento `whatsapp_form_redirect` no `dataLayer` indica preenchimento e direcionamento. Ele contém apenas `form_id: contato_site`, sem dados pessoais ou respostas de saúde, e não representa mensagem recebida, lead qualificado ou contrato. O container GTM existente foi preservado; suas tags remotas devem ser conferidas antes de configurar conversões ou evitar duplicidade com eventos de clique.
 
-Esta implementação não grava os dados em planilha ou CRM. Uma futura integração deve receber e confirmar a gravação no servidor antes de emitir um evento de lead recebido. Qualificação e contratação dependem da classificação comercial.
+O formulário exige nome, WhatsApp com DDD, quatro respostas em campos de seleção e confirmação de compartilhamento. As perguntas contemplam os atendimentos apresentados na landing page.
+
+A integração está preparada em `api/leads.js` e `integrations/google-sheets/Code.gs`, mas ainda depende da identificação da planilha e da configuração do receptor e da hospedagem. O WhatsApp só abre após confirmação explícita do salvamento. Sem configuração, o envio falha de forma visível e mantém os campos preenchidos. Não publicar essa versão antes do teste de recebimento real. Consulte `integrations/google-sheets/README.md`.
+
+O evento `lead_form_received` é emitido após confirmação de recebimento, sem nome, telefone ou respostas de saúde. Ele não comprova qualificação ou contrato. As configurações remotas da Meta, Google Ads e GTM não foram alteradas.
 
 Validação do fluxo:
 
 ```bash
-node --test tests/lead-form.test.mjs
+node --test tests/lead-form.test.mjs tests/lead-submission.test.mjs
 npm run lint
 npm run build
 ```
